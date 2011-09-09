@@ -1,5 +1,5 @@
 #include <Foundation/Foundation.h>
-#imclude <AppSupport/CPDistributedMessagingCenter.h>
+#include <AppSupport/CPDistributedMessagingCenter.h>
 
 @interface SandCastle : NSObject {
 }
