@@ -1,44 +1,25 @@
-//
-// PTDelegate.h
-// PwnTube
-//
-// Created by Árpád Goretity, 2011.
-// Licensed under a CreativeCommons Attribution NonCommercial 3.0 Unported License
-//
+/*
+ * PTDelegate.h
+ * PwnTube
+ *
+ * Created by Arpad Goretity on 12/12/2012
+ */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <YouTube/YouTube.h>
-#import <SandCastle.h>
-#import "NSString+Searcher.h"
-#import "PTTagViewController.h"
+#import <ipodimport.h>
+#import "YTVideo.h"
+#import "HCYouTube.h"
+#import "PTDownloadButton.h"
+#import "HCDownloadViewController.h"
 
-#define UILog(x) [[[[UIAlertView alloc] initWithTitle: @"Log" message: x delegate: nil cancelButtonTitle: @"Dismiss" otherButtonTitles: nil] autorelease] show]
+#define PTVideoKey @"PTVideoIDKey"
 
-@class MPMoviePlayerViewController;
-
-@interface PTDelegate: NSObject <UIAlertViewDelegate, UIActionSheetDelegate> {
-	unsigned dataLength;
-	NSURL *donateURL;
-	NSString *fileName;
-	NSMutableData *fileData;
-	YTVideo *downloadedVideo;
-	UITableViewCell *cell;
-	UIAlertView *alertView;
-	UIViewController *ytController;
-	UIActionSheet *sheet;
-	UIProgressView *progressBar;
+@interface PTDelegate: NSObject <HCDownloadViewControllerDelegate> {
+	HCDownloadViewController *dlVc;
 }
 
-+ (id) sharedInstance;
-- (void) showDonateAlertIfNeeded;
-- (void) showDidNotWatchErrorAlert;
-- (void) showTagViewController;
-- (void) showVideoActions;
-- (void) downloadVideo: (YTVideo *) video;
-- (void) registerVideoAsDownloaded: (YTVideo *) video;
-- (UIViewController *) youTubeController;
-- (UITableViewCell *) customCellForVideo: (YTVideo *) aVideo;;
++ (id)sharedInstance;
+
+- (void)downloadVideo:(YTVideo *)video button:(PTDownloadButton *)btn;
 
 @end
